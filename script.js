@@ -1,33 +1,59 @@
-const text=document.getElementById("affirmation");
-const getNewaffirmation = async () =>
-{
-    //api for quotes
-    var url="https://type.fit/api/quotes";    
-
-    // fetch the data from api
-    const response=await fetch(url);
-    console.log(typeof response);
-    //convert response to json and store it in quotes array
-    const allQuotes = await response.json();
-
-    // Generates a random number between 0 and the length of the quotes array
-    const indx = Math.floor(Math.random()*allQuotes.length);
-
-    //Store the quote present at the randomly generated index
-    const affirmation=allQuotes[indx].text;
-
-    //Store the author of the respective quote
-    const auth=allQuotes[indx].author;
-
-    if(auth==null)
-    {
-        author = "Anonymous";
-    }
-
-    //function to dynamically display the quote and the author
-    text.innerHTML=affirmation;
-   
-
+function getNewAffirmation() {
+    const adjectives = [
+      "Wonderful",
+      "Amazing",
+      "Incredible",
+      "Brilliant",
+      "Talented",
+      "Powerful",
+      "Strong",
+      "Courageous",
+      "Worthy",
+      "Radiant"
+    ];
+  
+    const nouns = [
+      "person",
+      "soul",
+      "mind",
+      "heart",
+      "life",
+      "journey",
+      "being",
+      "existence"
+    ];
+  
+    const verbs = [
+      "deserves",
+      "is",
+      "possesses",
+      "embodies",
+      "radiates",
+      "embraces"
+    ];
+  
+    const phrases = [
+      "all the love and happiness in the world.",
+      "the power to achieve all their dreams.",
+      "the strength to overcome any challenge.",
+      "the wisdom to navigate life's journey.",
+      "the courage to be their authentic selves.",
+      "the grace to handle any situation with ease."
+    ];
+  
+    const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+    const randomVerb = verbs[Math.floor(Math.random() * verbs.length)];
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+  
     
-}
-getNewQuote();
+    const affirmation = `You, ${randomAdjective} ${randomNoun}, ${randomVerb} ${randomPhrase}`;
+  
+    
+    document.getElementById("affirmation").textContent = affirmation;
+  }
+  
+  
+  window.onload = function() {
+    getNewAffirmation();
+  };
